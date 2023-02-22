@@ -1,4 +1,6 @@
 ﻿using LanchesMac.Context;
+using LanchesMac.Repositories;
+using LanchesMac.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace LanchesMac;
@@ -15,8 +17,10 @@ public class Startup
     public void ConfigureServices(IServiceCollection services)
     {
         //Registrando o serviço que conecta ao banco
-        services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+        services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+        services.AddTransient<ILancheRepository, LancheRepository>();
 
         services.AddControllersWithViews();
     }
