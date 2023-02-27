@@ -1,4 +1,5 @@
 ﻿using LanchesMac.Context;
+using LanchesMac.Models;
 using LanchesMac.Repositories;
 using LanchesMac.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -19,10 +20,10 @@ public class Startup
         //Registrando o serviço que conecta ao banco
         services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-        services.AddTransient<ICategoriaRepository, CategoriaRepository>();
         services.AddTransient<ILancheRepository, LancheRepository>();
-
+        services.AddTransient<ICategoriaRepository, CategoriaRepository>();
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+        services.AddScoped(sp => CarrinhoCompra.GetCarrinho(sp));
 
         services.AddControllersWithViews();
         services.AddMemoryCache();
