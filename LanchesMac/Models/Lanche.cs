@@ -37,10 +37,10 @@ public class Lanche
     [StringLength(200, ErrorMessage = "O {0} deve ter no máximo {1} caracteres")]
     [Column("IMAGEM_THUMB")]
     public string ImagemThumbnailUrl { get; set; }
-    [Display(Name = "Preferido?")]
+    [Display(Name = "Preferido")]
     [Column("PREFERIDO")]
     public bool IsLanchePreferido { get; set; }
-    [Display(Name = "Estoque?")]
+    [Display(Name = "Estoque")]
     [Column("ESTOQUE")]
     public bool EmEstoque { get; set; }
 
